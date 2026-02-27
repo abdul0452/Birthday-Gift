@@ -3732,3 +3732,11 @@ body::before {
 .tetris-game-area {
     padding: 5px !important;
 }
+
+/* TETRIS SCROLL FIX ONLY */
+#tetris-screen {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    align-items: flex-start !important;
+    padding-bottom: 20px;
+}
