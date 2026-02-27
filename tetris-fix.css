@@ -1,5 +1,6 @@
 /* ==================== TETRIS FIX ==================== */
 
+/* Tetris header styling */
 .tetris-header {
     background: #1a1a1a;
     padding: 10px;
@@ -42,11 +43,11 @@
 }
 
 .touch-info {
-    margin-top: 12px;
     color: #0ff;
     font-size: 9px;
     text-align: center;
     padding: 5px;
+    margin-top: 12px;
     background: rgba(0, 255, 255, 0.1);
     border: 2px solid #0ff;
     text-transform: uppercase;
@@ -54,7 +55,7 @@
     flex-shrink: 0;
 }
 
-/* KUNCI: page-screen di tetris harus bisa scroll, bukan overflow hidden */
+/* page-screen di tetris: overflow visible agar tombol tidak terpotong */
 #tetris-screen .page-screen {
     overflow-y: auto !important;
     overflow-x: hidden !important;
@@ -62,34 +63,33 @@
     flex: none !important;
 }
 
-/* page-container tetris juga auto height */
+/* page-container di tetris: height auto */
 #tetris-screen .page-container {
     height: auto !important;
-    min-height: 0 !important;
 }
 
-/* Tetris screen scroll fix */
+/* TETRIS SCREEN: bisa scroll, tapi screen lain TIDAK terpengaruh */
 #tetris-screen {
     display: none;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px 0 20px;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 10px 0 20px !important;
     overscroll-behavior: contain;
 }
 
 #tetris-screen.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
     opacity: 1;
     animation: screenAppear 0.5s ease forwards;
 }
