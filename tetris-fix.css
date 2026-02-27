@@ -1,0 +1,95 @@
+/* ==================== TETRIS FIX ==================== */
+
+.tetris-header {
+    background: #1a1a1a;
+    padding: 10px;
+    border-bottom: 4px solid #00ff41;
+    flex-shrink: 0;
+}
+
+.tetris-title {
+    color: #0ff;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 255, 0.8);
+    letter-spacing: 3px;
+}
+
+.tetris-stats {
+    display: flex;
+    justify-content: space-around;
+    color: #0ff;
+    font-size: 9px;
+}
+
+.tetris-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #0f380f;
+    flex-shrink: 0;
+}
+
+#tetris-canvas {
+    border: 4px solid #0ff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.5);
+    image-rendering: pixelated;
+    display: block;
+    width: 240px;
+    height: 400px;
+}
+
+.touch-info {
+    margin-top: 12px;
+    color: #0ff;
+    font-size: 9px;
+    text-align: center;
+    padding: 5px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #0ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+}
+
+/* KUNCI: page-screen di tetris harus bisa scroll, bukan overflow hidden */
+#tetris-screen .page-screen {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+    flex: none !important;
+}
+
+/* page-container tetris juga auto height */
+#tetris-screen .page-container {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Tetris screen scroll fix */
+#tetris-screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0 20px;
+    overscroll-behavior: contain;
+}
+
+#tetris-screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    animation: screenAppear 0.5s ease forwards;
+}
