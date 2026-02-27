@@ -1012,13 +1012,3 @@ body::before {
     #tetris-canvas { width: 200px; height: 333px; }
     .tetris-layout { gap: 8px; padding: 10px; }
 }
-
-/* ==================== TETRIS SCREEN SCROLL FIX ==================== */
-#tetris-screen {
-    display: none;
-    opacity: 0;
-}
-
-#tetris-screen.active {
-    display: flex;
-}
