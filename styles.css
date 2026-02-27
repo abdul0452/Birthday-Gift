@@ -3610,3 +3610,155 @@ body::before {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/* =====================================================
+   RESPONSIVE PATCH — tambahkan di paling bawah styles.css
+   Hanya fix posisi/scroll, tampilan tidak berubah
+   ===================================================== */
+
+/* 1. Izinkan body scroll di HP */
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* 2. Loading screen: selalu fixed di tengah layar */
+#loading-screen {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#loading-screen.active {
+    display: flex !important;
+}
+
+/* Loading screen box menyesuaikan layar kecil */
+#loading-screen .gameboy-screen {
+    width: min(600px, 92vw);
+    height: auto;
+    min-height: min(400px, 70vh);
+}
+
+#loading-screen .title,
+.loading-title {
+    font-size: clamp(20px, 7vw, 48px);
+    letter-spacing: clamp(2px, 2vw, 8px);
+    margin-bottom: clamp(16px, 4vh, 40px);
+}
+
+#loading-screen .loading-text {
+    font-size: clamp(10px, 3vw, 16px);
+}
+
+#loading-screen .screen-content {
+    padding: clamp(20px, 5vw, 40px);
+}
+
+.progress-text { font-size: clamp(10px, 3vw, 16px); }
+
+/* 3. Semua screen non-loading: scroll jika konten > layar */
+.screen:not(#loading-screen) {
+    position: relative;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* justify-content tetap center untuk desktop */
+    align-items: flex-start;
+    padding: 12px 0;
+}
+
+.screen.active:not(#loading-screen) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 4. Tetris screen: bisa scroll */
+#tetris-screen {
+    position: relative !important;
+    overflow-y: auto;
+    align-items: center;
+    padding: 12px 0 24px;
+}
+
+#tetris-screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 5. Gameboy body & page container: lebar menyesuaikan */
+.gameboy-body {
+    width: min(420px, 96vw);
+    height: auto;
+    margin: 0 auto;
+}
+
+.page-container {
+    width: min(420px, 96vw);
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* page-screen flex agar isi mengisi ruang */
+.page-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 6. Tetris layout juga menyesuaikan */
+.tetris-layout {
+    width: min(420px, 96vw);
+    margin: 0 auto;
+}
+
+/* 7. Canvas tetris: scale proporsional */
+#tetris-canvas {
+    width: min(240px, 64vw) !important;
+    height: auto !important;
+    aspect-ratio: 240 / 400;
+}
+
+/* 8. Ctrl buttons tetris: tidak overflow di HP kecil */
+.ctrl-left, .ctrl-right, .ctrl-down {
+    width: clamp(68px, 20vw, 90px);
+    height: clamp(56px, 16vw, 70px);
+}
+
+.ctrl-drop, .ctrl-pause {
+    height: clamp(52px, 14vw, 64px);
+    min-width: 0;
+}
+
+.ctrl-rotate {
+    height: clamp(46px, 12vw, 58px);
+}
+
+/* 9. Message content: max-height agar tidak overflow */
+.message-content {
+    max-height: 52vh;
+}
+
+/* 10. Photo display: max-height */
+.photo-display {
+    max-height: 46vh;
+}
+
+/* 11. Playlist: max-height */
+.playlist-buttons {
+    max-height: 35vh;
+}
