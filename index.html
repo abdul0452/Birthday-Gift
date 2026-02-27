@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Birthday Gift</title>
+    <link rel="stylesheet" href="responsive-fix.css"> 
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="gameboy-container">
+        <!-- Loading Screen - Enhanced Blue Theme -->
+        <div id="loading-screen" class="screen active">
+            <div class="gameboy-screen loading-enhanced">
+                <div class="scanlines"></div>
+                <div class="crt-effect"></div>
+                <div class="screen-content loading-content">
+                    <div class="loading-brand">NINTENDO®</div>
+                    <div class="loading-title-container">
+                        <h1 class="loading-title">BIRTHDAY GIFT</h1>
+                        <div class="title-underline"></div>
+                    </div>
+
+                    <div class="loading-animation">
+                        <div class="pixel-grid">
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="loading-text">
+                            <span class="text-line">SYSTEM BOOTING</span>
+                            <span class="cursor"></span>
+                        </div>
+                    </div>
+
+                    <div class="loading-bar-container">
+                        <div class="loading-bar-label">
+                            <span>MEMORY</span>
+                            <span class="percent" id="progress-percent">0%</span>
+                        </div>
+                        <div class="loading-bar">
+                            <div class="loading-progress" id="progress-fill"></div>
+                            <div class="loading-glow"></div>
+                        </div>
+                    </div>
+
+                    <div class="loading-status" id="loading-status">
+                        <span class="status-icon">▶</span>
+                        <span class="status-text">INITIALIZING...</span>
+                    </div>
+
+                    <div class="loading-footer">
+                        <div class="footer-left">
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <div class="footer-center">© 1990 NINTENDO</div>
+                        <div class="footer-right">GAME PLAYER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Screen -->
+        <div id="main-screen" class="screen">
+            <div class="gameboy-body">
+                <div class="gameboy-header">
+                    <div class="power-indicator">
+                        <span class="power-dot"></span>
+                        <span class="power-text">POWER</span>
+                    </div>
+                    <div class="brand-text">GAME-PLAYER</div>
+                </div>
+
+                <div class="gameboy-screen">
+                    <div class="screen-content">
+                        <h1 class="birthday-title">Happy Birthday!</h1>
+                        <div class="start-text">Press Start Button</div>
+                        <div class="screen-info">
+                            <span class="dot-matrix">DOT MATRIX WITH STEREO SOUND</span>
+                            <span class="battery">
+                                <span class="battery-dot"></span>
+                                BATTERY
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-buttons">
+                    <button class="menu-btn message-btn" onclick="showScreen('message')">MESSAGE</button>
+                    <button class="menu-btn gallery-btn" onclick="showScreen('gallery')">GALLERY</button>
+                    <button class="menu-btn music-btn" onclick="showScreen('music')">MUSIC</button>
+                    <button class="menu-btn tetris-btn" onclick="showScreen('tetris')">TETRIS</button>
+                </div>
+
+                <div class="controls">
+                    <div class="dpad">
+                        <div class="dpad-center">
+                            <div class="dpad-up">↑</div>
+                            <div class="dpad-left">←</div>
+                            <div class="dpad-right">→</div>
+                            <div class="dpad-down">↓</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn b-btn">B</button>
+                        <button class="action-btn a-btn">A</button>
+                    </div>
+                </div>
+
+                <div class="bottom-controls">
+                    <button class="control-btn select-btn">SELECT</button>
+                    <button class="control-btn start-btn" onclick="startBirthdayMessage()">START</button>
+                </div>
+
+                <div class="speaker-grille"></div>
+            </div>
+        </div>
+
+        <!-- Message Screen -->
+        <div id="message-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="page-header">Message</div>
+                    <div class="message-content" id="message-content"></div>
+                    <button class="skip-btn" onclick="skipTypewriter()">SKIP</button>
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" onclick="showScreen('main')">KEMBALI</button>
+                    <button class="page-btn continue-btn" onclick="showScreen('gallery')">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Screen -->
+        <div id="gallery-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="page-header">Gallery</div>
+                    <div class="gallery-content" id="gallery-content"></div>
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" onclick="showScreen('main')">KEMBALI</button>
+                    <button class="page-btn continue-btn" onclick="showScreen('music')">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Screen -->
+        <div id="music-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="page-header">Music Player</div>
+                    <div class="music-content" id="music-content"></div>
+                </div>
+                <div class="page-controls">
+                    <button class="page-btn back-btn" onclick="showScreen('main')">KEMBALI</button>
+                    <button class="page-btn continue-btn" onclick="showScreen('tetris')">SELANJUTNYA</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tetris Screen -->
+        <div id="tetris-screen" class="screen">
+            <div class="page-container">
+                <div class="page-screen">
+                    <div class="tetris-header">
+                        <div class="tetris-title">TETRIS</div>
+                        <div class="tetris-stats">
+                            <div class="stat">Score: <span id="score">0</span></div>
+                            <div class="stat">Level: <span id="level">1</span></div>
+                            <div class="stat">Lines: <span id="lines">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="tetris-game">
+                        <canvas id="tetris-canvas" width="240" height="400"></canvas>
+                    </div>
+
+                    <div class="tetris-control-panel">
+                        <div class="ctrl-row">
+                            <button class="ctrl-btn ctrl-rotate" id="rotate-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M1 4v6h6" />
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                                </svg>
+                                <span>ROTATE</span>
+                            </button>
+                        </div>
+
+                        <div class="ctrl-row ctrl-row-main">
+                            <button class="ctrl-btn ctrl-left" id="left-btn">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M19 12H5M12 5l-7 7 7 7" />
+                                </svg>
+                                <span>LEFT</span>
+                            </button>
+
+                            <button class="ctrl-btn ctrl-down" id="down-btn">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12l7 7 7-7" />
+                                </svg>
+                                <span>DOWN</span>
+                            </button>
+
+                            <button class="ctrl-btn ctrl-right" id="right-btn">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                                <span>RIGHT</span>
+                            </button>
+                        </div>
+
+                        <div class="ctrl-row ctrl-row-actions">
+                            <button class="ctrl-btn ctrl-drop" id="drop-btn">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 2v20M2 12h20" />
+                                </svg>
+                                <span>HARD DROP</span>
+                            </button>
+
+                            <button class="ctrl-btn ctrl-pause" id="pause-btn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <rect x="6" y="4" width="4" height="16" />
+                                    <rect x="14" y="4" width="4" height="16" />
+                                </svg>
+                                <span>PAUSE</span>
+                            </button>
+                        </div>
+
+                        <div class="keyboard-hint">
+                            ↑ Rotate | ← → Move | ↓ Soft Drop | SPACE Hard Drop
+                        </div>
+                    </div>
+
+                    <div class="touch-info">Tekan tombol untuk memainkan</div>
+                </div>
+
+                <div class="page-controls">
+                    <button class="page-btn back-btn" onclick="showScreen('main')">KEMBALI</button>
+                    <button class="page-btn restart-btn" onclick="restartTetris()">RESTART</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal">
+            <div class="modal-content">
+                <div class="game-over-text">GAME OVER</div>
+                <div class="final-score">Score: <span id="final-score">0</span></div>
+                <button class="modal-btn" id="confirm-btn">OK</button>
+            </div>
+        </div>
+
+        <!-- Final Message Modal -->
+        <div id="final-message-modal" class="modal">
+            <div class="modal-content">
+                <div class="final-message-title">GITU DOANG???</div>
+                <div class="final-message-text">
+                    <p>Skill issue jirr😹😹</p>
+                    <p>MAIN POU AJA SANA,</p>
+                    <p>MAIN POU JUGA ENAK😹</p>
+                    <p>🤭🤭</p>
+                    <p class="love-text">POKEEE 🫵🏻😹</p>
+                </div>
+                <button class="modal-btn" id="ok-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
